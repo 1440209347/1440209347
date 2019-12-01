@@ -1,0 +1,53 @@
+import java.util.Scanner;
+public class BinarySearch
+{
+    static int key;
+    public static void main(String[] args)
+    {
+        //数组的输入
+        System.out.println("请输入数组中的10个元素：");
+        int[] a=new int [10];
+        Scanner scan=new Scanner(System.in);
+        for(int i=0;i<10;i++)
+        {  
+            a[i]=scan.nextInt();
+        }
+         
+        //要查找的元素输入
+        System.out.println("请输入要查找的元素：");
+         Scanner number = new Scanner(System.in);
+         key= number.nextInt();
+          
+        /*数组的输出提示*/
+        System.out.print("你输入的数组是：\n");
+        for(int b=0;b<10;b++)
+         {
+            System.out.print("["+a[b]+"]");
+ 
+         }
+        /*查找元素输出提示*/
+            System.out.print("\n你要查找的元素是：\n");
+            System.out.print(key);
+             
+        /*最终结果的输出*/
+           System.out.println("\n目标数的数组下标是："+binSearch(a, 0, a.length-1)); 
+    }
+     
+    /*二分查找算法开始*/
+    public static int binSearch(int a[], int left, int right) {  
+        int mid = (right - left) / 2 + left;  
+        if (a[mid] == key) {  
+            return mid;  
+        }  
+        if (left >= right) {  
+            return -1;  //在数组中没找到特定元素
+        } else if (key > a[mid]) {  
+            return binSearch(a, mid + 1, right);   //如果查找的数在数组右半段
+        } else if (key < a[mid]) {  
+            return binSearch(a, left, mid - 1);   //如果查找的数在数组左半段
+        }  
+        return -1; //在数组中没找到特定元素
+    }
+    /*查找算法结束*/
+}
+
